@@ -1,7 +1,9 @@
 module.exports.profile = function (req, resp) {
-    resp.send('<h1>User Profile </h1>');
+  return resp.render("users.ejs", {
+    title: "Users",
+  });
 };
 
 module.exports.post = function (req, resp) {
-    console.log('Hi');
-}
+  console.log("Hi");
+};

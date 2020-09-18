@@ -6,5 +6,7 @@
 
 //Defining an action for home
 module.exports.home = function (req, resp) {
-    resp.send('<h1>Express Controller is running!</h1>')
+  return resp.render("home", {
+    title: "Codeial",
+  });
 };

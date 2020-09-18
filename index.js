@@ -8,7 +8,7 @@ const app = express();
 //Get express router from routes
 app.use("/", require("./routes/"));
 //Setting up view engine
-app.set("view-engine", "ejs");
+app.set("view engine", "ejs");
 app.set("views", "./views");
 
 //To check if server is running
