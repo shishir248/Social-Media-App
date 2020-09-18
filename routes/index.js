@@ -7,6 +7,9 @@ const homeController = require('../controllers/home_controller');
 
 //loading action for home route
 router.get('/', homeController.home);
+//Loading action for other routes in the same folder routes
+router.use('/users', require('./users'));
+
 
 console.log('Express router is loaded');
 

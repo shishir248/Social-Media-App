@@ -6,7 +6,7 @@ const port = 8000;
 //Fire express
 const app = express();
 //Get express router from routes
-app.get('/', require('./routes/index'))
+app.use('/', require('./routes/'));
 
 
 //To check if server is running
