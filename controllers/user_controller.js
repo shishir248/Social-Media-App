@@ -1,3 +1,6 @@
+//Importing the user schema
+const User = require('../models/user');
+
 module.exports.profile = function (req, resp) {
   return resp.render("users.ejs", {
     title: "Users",
@@ -23,7 +26,35 @@ module.exports.signin = function (req, resp) {
 
 //Get the signed up data
 module.exports.create = function (req, resp) {
-  //TODO
+  if (req.body.password != req.body.confirm) {
+    resp.redirect('back');
+  }
+
+  User.findOne({
+    email: req.body.email
+  }, function (err, user) {
+    if (err) {
+      console.log('Error in finding in Schema-->User');
+      return;
+    }
+
+    //To create a new user
+    if (!user) {
+      User.create(req.body, function (err, user) {
+        if (err) {
+          console.log('Error in creating a user');
+          return;
+        }
+        return resp.redirect('/users/sign-in');
+      });
+    }
+
+    //If user already exists 
+    else {
+      resp.redirect('back');
+    }
+
+  });
 }
 
 //Get the login data
