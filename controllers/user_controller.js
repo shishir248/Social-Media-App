@@ -1,10 +1,27 @@
+const {
+  request
+} = require('express');
 //Importing the user schema
 const User = require('../models/user');
 
 module.exports.profile = function (req, resp) {
-  return resp.render("users.ejs", {
-    title: "Users",
-  });
+  if (req.cookies.user_id) {
+    User.findById(req.cookies.user_id, function (req, user) {
+      //Handle user found 
+      if (user) {
+        //Handle session creation
+        return resp.render("users.ejs", {
+          title: "Welcome",
+          name: user.name,
+          email: user.email
+        });
+      }
+      //Handle user not found
+      return resp.redirect('/users/sign-up');
+    });
+  } else {
+    return resp.redirect('/users/sign-in');
+  }
 };
 
 module.exports.post = function (req, resp) {
@@ -74,16 +91,19 @@ module.exports.createSession = function (req, resp) {
         return resp.redirect('back');
       }
       //Handle session creation
-      resp.cookie("user_id", user.id);
-      return resp.redirect('/users/profile')
+      resp.cookie('user_id', user.id);
+      resp.redirect('/users/profile');
     }
-
     //Handle user not found
     else {
       return resp.redirect('/users/sign-up');
     }
   });
+}
 
+//Signing out
+module.exports.signOut = function (req, resp) {
+  resp.clearCookie('user_id')
 
-
+  return resp.redirect('/users/sign-in');
 }

@@ -1,2 +1,8 @@
 <link rel="stylesheet" href="/css/users.css">
-<h1>Hi User</h1>
+<h1>Hi, <%=name%></h1>
+<h1>Verify your email id <%=email%></h1>
+<div>
+    <form action="/users/sign-out" method="POST">
+        <button>Sign Out</button>
+    </form>
+</div>
