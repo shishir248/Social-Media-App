@@ -12,6 +12,14 @@ const expressLayouts = require("express-ejs-layouts");
 const app = express();
 //Get database
 const db = require("./config/mongoose");
+//Require express session library used for session cookies
+const session = require("express-session");
+//Require passport
+const passport = require("passport");
+//Require strategy
+const passportlocal = require("./config/passport-local-strategy");
+//Require mongo store to store the session
+const MongoStore = require("connect-mongo")(session);
 
 //Use url encoded middleware(Post parser)
 app.use(express.urlencoded());
@@ -25,11 +33,40 @@ app.use(express.static("./assets"));
 app.set("layout extractStyles", true);
 app.set("layout extractScripts", true);
 
-//Get express router from routes
-app.use("/", require("./routes/"));
 //Setting up view engine
 app.set("view engine", "ejs");
 app.set("views", "./views");
+
+//Use express session library
+app.use(
+  session({
+    name: "codeial",
+    //TODO Change the secret before deployment
+    secret: "blahsomething",
+    saveUninitialized: false,
+    resave: false,
+    cookie: {
+      maxAge: 1000 * 60 * 100,
+    },
+    store: new MongoStore(
+      {
+        mongooseConnection: db,
+        autoRemove: "disabled",
+      },
+      function (err) {
+        console.log(err);
+      }
+    ),
+  })
+);
+//Use passport and session
+app.use(passport.initialize());
+app.use(passport.session());
+//Calling storing local fn
+app.use(passport.setAuthenticatedUser);
+
+//Get express router from routes
+app.use("/", require("./routes/"));
 
 //To check if server is running
 app.listen(port, function (err) {
