@@ -1,0 +1,28 @@
+footer {
+  height: 60px;
+  background-color: #cccbcb; }
+  footer .footer-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center; }
+  footer h2 {
+    margin: 0px;
+    padding: 0px;
+    width: max-content;
+    font-size: 1.2rem;
+    font-weight: 400;
+    font-family: 'Poppins'; }
+  footer li {
+    list-style: none;
+    margin: 0px;
+    padding: 0px 20px;
+    padding-right: 40px;
+    display: inline-block;
+    font-size: 1.1rem;
+    font-family: 'Poppins'; }
+    footer li a {
+      text-decoration: none;
+      color: black; }
+    footer li a:hover {
+      color: #107a8b;
+      text-decoration: underline; }

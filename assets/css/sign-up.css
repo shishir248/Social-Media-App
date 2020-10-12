@@ -1,0 +1,33 @@
+h1 {
+  text-align: center;
+  color: #086972;
+  font-weight: 500;
+  margin-top: 70px;
+  font-size: 2.4rem; }
+
+form {
+  width: max-content;
+  margin: 40px auto; }
+  form * {
+    font-family: 'Poppins'; }
+  form input {
+    margin: 10px 0px;
+    border-width: 0px 0px 1px 0px;
+    border-color: grey;
+    font-size: 1.2rem; }
+  form .sign-up {
+    width: fit-content;
+    margin: auto; }
+  form button {
+    margin-top: 30px;
+    background-color: white;
+    color: #086972;
+    font-size: 1.2rem;
+    font-weight: 500;
+    border-radius: 0px;
+    width: 140px;
+    height: 50px;
+    border: 2.2px solid #23b964;
+    outline: none; }
+  form button:hover {
+    background: linear-gradient(to top right, white 40%, #06ff7293); }

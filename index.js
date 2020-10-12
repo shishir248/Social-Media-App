@@ -20,13 +20,26 @@ const passport = require("passport");
 const passportlocal = require("./config/passport-local-strategy");
 //Require mongo store to store the session
 const MongoStore = require("connect-mongo")(session);
+//Require sass middleware
+const sassMiddleware = require('node-sass-middleware');
+
+app.use(expressLayouts);
+
+app.use(sassMiddleware({
+  src: './assets/scss',
+  dest: './assets/css',
+  debug: true,
+  outputStyle: 'extended',
+  prefix: '/css'
+}))
+
 
 //Use url encoded middleware(Post parser)
 app.use(express.urlencoded());
 //Use cookie parser
 app.use(cookieParser());
 
-app.use(expressEjsLayouts);
+
 //Set up static files
 app.use(express.static("./assets"));
 //extract styles and scripts from sub pages into the layout
@@ -48,8 +61,7 @@ app.use(
     cookie: {
       maxAge: 1000 * 60 * 100,
     },
-    store: new MongoStore(
-      {
+    store: new MongoStore({
         mongooseConnection: db,
         autoRemove: "disabled",
       },
