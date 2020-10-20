@@ -19,3 +19,19 @@ module.exports.create=function(req,resp){
         }
     })
 }
+
+module.exports.destroy=function(req,resp){
+   Comment.findById(req.params.id,function(err,comment){
+        if(comment.user==req.user.id){
+            let postId=comment.post;
+            comment.remove();
+            //Remove comment from comment array present in post schema
+            Post.findByIdAndUpdate(postId,{$pull:{comments:req.params.id}},function(err,post){
+                return resp.redirect('back');
+            })
+        }
+        else{
+            resp.redirect('back');
+        }
+   });
+}

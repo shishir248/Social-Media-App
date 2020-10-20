@@ -1,4 +1,5 @@
 const Post=require('../models/post')
+const Comment=require('../models/comment');
 
 module.exports.create=function(req,resp){
     Post.create({
@@ -13,5 +14,20 @@ module.exports.create=function(req,resp){
             return resp.redirect('back');
         }
     })
+}
 
+module.exports.destroy=function(req,resp){
+    Post.findById(req.params.id,function(err,post){
+        //To check if a user is authorized to delete a post
+        // .id is used inplace of ._id because (.id) is String converted ._id by mongoose
+        if(post.user==req.user.id){
+            post.remove();
+
+            Comment.deleteMany({post:req.params.id},function(err){
+                return resp.redirect('back');
+            });
+        }else{
+            return resp.redirect('back');
+        }
+    })
 }

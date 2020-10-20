@@ -21,6 +21,12 @@
     <ul>
         <%for(post of posts){%>
             <li>
+                <%if((locals.user) && (locals.user.id==post.user.id)){%>
+                    <small>
+                        <a href="/posts/destroy/<%=post._id%>">X</a>
+                    </small>
+                <%}%>
+
                 <div id="post-user"><%=post.user.name%></div>
                 <div id="post-content" ><p><%=post.content%></p></div>
                 
@@ -37,13 +43,21 @@
                 <div class="post-comments-list">
                     <ul id="post-comments-<%=post._id%>" >
                         <%for(comment of post.comments){%>
+                            <li>
+                            <%if((locals.user) && (locals.user.id==comment.user.id)){%>
+                            <small>
+                                <a href="/comments/destroy/<%=comment.id%>">X</a>
+                            </small>
+                            <%}%>
                             <p id="comment-user">
                                 <%=comment.user.name%>
                             </p>
                             <p id="comment-content">
                                 <%=comment.content%>
                             </p>
-                            <%}%>
+                            </li>
+                        <%}%>
+                        
                     </ul>
                 </div>
             </li>    

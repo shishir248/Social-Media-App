@@ -90,8 +90,6 @@
             background-color: #115f66;
             border-radius: 30px; }
       .post-list-container ul li .post-comments-list {
-        border: 1px solid rgba(100, 100, 100, 0.4);
-        border-radius: 15px;
         margin-bottom: 20px; }
         .post-list-container ul li .post-comments-list ul #comment-user {
           font-weight: 500;
