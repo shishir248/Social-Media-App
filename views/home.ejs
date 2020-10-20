@@ -1,21 +1,51 @@
-<h1>Codeial Social App</h1>
-<section id="feed-posts">
-    <h4>Posts</h4>
-    //If user is signed in only then show 
-    <%if(locals.user){%>
-    <form action="/posts/create" id="new-post-form" method="POST">
-        <textarea name="content" cols="30" rows="3" placeholder="Type Here..."></textarea>
-        <input type="submit"  value="Post" >
-    </form>
-    <%}%>
-</section>
-
+<link href="https://fonts.googleapis.com/css?family=Lato:100,100italic,300,300italic,regular,italic,700,700italic,900,900italic" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,regular,italic,500,500italic,700,700italic,900,900italic" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,regular,italic,600,600italic,700,700italic,800,800italic" rel="stylesheet" />
+<h1 id="main-heading">Codeial Social App</h1>
+<%if(locals.user){%>
+    <section id="feed-posts">
+        <!-- If user is signed in only then show  -->  
+        <form action="/posts/create" id="new-post-form" method="POST">
+            <textarea name="content" cols="100%" rows="3" required placeholder="Have something in mind, <%=user.name%>??"></textarea>
+            <input type="submit" id="post-button" value="Post" >
+        </form>        
+    </section>
+<%}%>
 <div class="post-list-container">
+    <br><br>
+    <%if(locals.user){%>
+        <hr>
+    <%}%>
+    <h2 id="feed">Feed</h2>
     <ul>
         <%for(post of posts){%>
             <li>
-                <%=post.content%>
-                <%=post.user.name%>
+                <div id="post-user"><%=post.user.name%></div>
+                <div id="post-content" ><p><%=post.content%></p></div>
+                
+                <!-- Check if a user is logged in -->
+                <div class="post-comments">
+                    <%if(locals.user){%>
+                        <form action="/comments/create" id="comment-post" method="POST">
+                            <textarea name="content" cols="30" rows="auto" placeholder="Add your Comment..." required></textarea>
+                            <input type="hidden" name="post" value="<%=post._id%>">
+                            <input type="submit"  value="Add Comment" id="comment-button">
+                        </form>            
+                        <%}%>
+                </div>
+                <div class="post-comments-list">
+                    <ul id="post-comments-<%=post._id%>" >
+                        <%for(comment of post.comments){%>
+                            <p id="comment-user">
+                                <%=comment.user.name%>
+                            </p>
+                            <p id="comment-content">
+                                <%=comment.content%>
+                            </p>
+                            <%}%>
+                    </ul>
+                </div>
             </li>    
         <%}%>
     </ul>

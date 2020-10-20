@@ -11,7 +11,7 @@ router.get("/", homeController.home);
 router.use("/users", require("./users"));
 //Loading action for 'create' route
 router.use('/posts',require('./post'));
-
+router.use('/comments',require('./comment'));
 
 console.log("Express router is loaded");
 

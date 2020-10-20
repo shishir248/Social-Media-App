@@ -1,2 +1,106 @@
-h1 {
-  font-family: 'Poppins'; }
+#main-heading {
+  margin: 10px 10px;
+  text-align: left;
+  font-family: sans-serif; }
+
+#feed-posts {
+  width: 47%;
+  border: 1px solid rgba(100, 100, 100, 0.3);
+  border-radius: 10px;
+  padding: 20px;
+  margin: auto; }
+  #feed-posts form {
+    width: 100%; }
+    #feed-posts form * {
+      font-family: 'Roboto'; }
+    #feed-posts form textarea {
+      width: 98%;
+      font-size: 1.3rem;
+      padding: 10px 0px 0px 10px;
+      outline: none;
+      border-radius: 25px;
+      border-color: rgba(100, 100, 100, 0.4); }
+    #feed-posts form #post-button {
+      font-size: 0.9rem;
+      width: 80px;
+      height: 30px;
+      border: none;
+      font-family: 'Poppins';
+      color: white;
+      background-color: #115f66;
+      border-radius: 30px; }
+
+.post-list-container {
+  width: 50%;
+  margin: auto; }
+  .post-list-container #feed {
+    border-bottom: 1px solid grey;
+    color: #086972;
+    font-family: 'Barlow Semi Condensed',sans-serif;
+    font-weight: 500; }
+  .post-list-container ul {
+    list-style: none;
+    padding: 0px; }
+    .post-list-container ul li {
+      min-height: 70px;
+      padding: 20px 20px 0px;
+      border: 1px solid rgba(100, 100, 100, 0.3);
+      border-radius: 8px;
+      margin-bottom: 10px;
+      text-transform: capitalize; }
+      .post-list-container ul li #post-user {
+        font-weight: 500;
+        width: max-content;
+        border-bottom: 1px solid rgba(100, 100, 100, 0.6);
+        margin-bottom: 10px;
+        font-family: 'Roboto';
+        font-size: 1.1rem;
+        color: #094a50; }
+      .post-list-container ul li #post-content {
+        min-height: 70px;
+        border: 1px solid rgba(100, 100, 100, 0.5);
+        border-radius: 8px; }
+        .post-list-container ul li #post-content p {
+          font-family: 'Open Sans';
+          padding: 0px 0px 0px 10px;
+          margin: 8px 0px 0px 1px;
+          font-size: 1.3rem;
+          color: #243b3b;
+          font-weight: 600; }
+      .post-list-container ul li .post-comments {
+        margin: 20px 0px; }
+        .post-list-container ul li .post-comments form {
+          margin: 0px;
+          width: 100%;
+          display: flex;
+          justify-content: space-between; }
+          .post-list-container ul li .post-comments form textarea {
+            width: 75%;
+            border-color: rgba(100, 100, 100, 0.2);
+            border-radius: 20px;
+            padding: 10px 0px 0px 10px;
+            font-family: 'Roboto'; }
+          .post-list-container ul li .post-comments form #comment-button {
+            font-size: 0.9rem;
+            padding: 5px 10px 5px 10px;
+            height: 30px;
+            border: none;
+            font-family: 'Poppins';
+            color: white;
+            background-color: #115f66;
+            border-radius: 30px; }
+      .post-list-container ul li .post-comments-list {
+        border: 1px solid rgba(100, 100, 100, 0.4);
+        border-radius: 15px;
+        margin-bottom: 20px; }
+        .post-list-container ul li .post-comments-list ul #comment-user {
+          font-weight: 500;
+          font-size: 0.9rem;
+          font-family: 'Roboto';
+          color: #094a50;
+          margin: 8px 0px 2px 8px; }
+        .post-list-container ul li .post-comments-list ul #comment-content {
+          margin: 0px 0px 8px 15px;
+          font-size: 0.85rem;
+          font-weight: 600;
+          font-family: 'Open Sans'; }
