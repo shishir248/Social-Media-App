@@ -18,10 +18,14 @@ module.exports.home = function (req, resp) {
       path: 'user'
     }
   }).exec(function(err,posts){
+    //To display all users logged in
+    User.find({},function(err,users){
       return resp.render("home", {
         title: "Codeial | Home",
-        posts: posts
-    });
+        posts: posts,
+        all_users: users
+      });
+    })
   });
 }
 

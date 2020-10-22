@@ -3,10 +3,27 @@ const { request } = require("express");
 const User = require("../models/user");
 
 module.exports.profile = function (req, resp) {
-  return resp.render("users.ejs", {
-    title: "Profile page",
-  });
+  //Open specific profile page from friends's list
+  User.findById(req.params.id,function(err,user){
+    return resp.render("users.ejs", {
+      title: "Profile page",
+      profile_user: user
+    });
+  })
 };
+
+module.exports.update=function(req,resp){
+  //To not let anybody get away with changing the html
+  if(req.params.id==req.user.id){
+    // User.findByIdAndUpdate(req.params.id,{name:req.body.name,email: req.body.email}
+    User.findByIdAndUpdate(req.params.id,req.body,function(err,user){
+      return resp.redirect('back');
+    })
+  }else{
+    return resp.status(401).send("Unauthorized");
+  }
+  
+}
 
 module.exports.post = function (req, resp) {
   console.log("Hi");
